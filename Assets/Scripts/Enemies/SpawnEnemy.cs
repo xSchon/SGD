@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnEnemy : MonoBehaviour
 {
     [SerializeField] private GameObject opponentPrefab;  
+    [SerializeField] private GameObject tankOponent;  
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,12 @@ public class SpawnEnemy : MonoBehaviour
         {
             // Spawn opponent when X is pressed
             SpawnOpponent(this.opponentPrefab);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            // Spawn opponent when X is pressed
+            SpawnOpponent(this.tankOponent);
         }
     }   
 
