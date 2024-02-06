@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class TankOponent : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class TankOponent : MonoBehaviour
     [SerializeField] private float currentHP;
     [SerializeField] private float maxDamage = 100;
     [SerializeField] private float DPS = 1;
+    public NavMeshAgent agent;
     private float damageDone = 0;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,8 @@ public class TankOponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveTowardsPlant();
+        //MoveTowardsPlant();
+        agent.SetDestination(target.transform.position);
     }
 
     void MoveTowardsPlant()

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9194342255828696396}
   - component: {fileID: 5973435752662318168}
   - component: {fileID: 7151469973558773717}
+  - component: {fileID: 3425770626221428152}
   m_Layer: 0
   m_Name: TankOponent
   m_TagString: Untagged
@@ -125,6 +126,7 @@ MonoBehaviour:
   currentHP: 300
   maxDamage: 100
   DPS: 1
+  agent: {fileID: 3425770626221428152}
 --- !u!54 &7151469973558773717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,3 +154,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &3425770626221428152
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2290672788978146720}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
