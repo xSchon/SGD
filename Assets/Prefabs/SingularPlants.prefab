@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5807989860244542324}
   - component: {fileID: 1924544829537109232}
   m_Layer: 0
-  m_Name: PlantA
+  m_Name: SingularPlants
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
