@@ -22,7 +22,9 @@ public class SmallOponent : MonoBehaviour
     {
         GoTowardsPlant();
     }
-
+    public void SetTarget(GameObject Plant){
+        this.target = Plant.GetComponent<Transform>();
+    }
     void GoTowardsPlant()
     {
         Vector3 direction = target.transform.position - transform.position;

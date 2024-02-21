@@ -19,21 +19,29 @@ public class PlantsManager : MonoBehaviour
 {
     [SerializeField] GameObject PlantPrefab;
     [SerializeField] TextAsset textAssetData;
-    public List<PlantInfo> plants;
+    public List<PlantInfo> levelPlants = new List<PlantInfo>();
     
     private int currentLevel = 1;
+    private System.Random rnd = new System.Random();
     void Start()
     {
-      //  GameObject prefab1 = Instantiate(PlantPrefab);
-      //  PlantInstance pp = prefab1.GetComponent<PlantInstance>();
         LoadPlants();
     }
 
     void Update()
     {
+        CheckHP();
     }
 
-    
+    void CheckHP(){
+        int currHP = 0;
+        int maxHP = 0;
+        for(int i = 0; i < levelPlants.Count; i++){
+            maxHP += levelPlants[i].plantScript.getMaxHP();
+            currHP += levelPlants[i].plantScript.getCurrentHP();
+        }
+    }
+
     void LoadPlants(){
         string[] dataRows = textAssetData.text.Split(new string[] {"\n"}, StringSplitOptions.None);
         foreach(string row in dataRows.Skip(1).Take(dataRows.Length-2).ToArray()){
@@ -48,25 +56,27 @@ public class PlantsManager : MonoBehaviour
                     Vector3 pos = new Vector3(X,Y,Z);
 
                     GameObject newObject = Instantiate(PlantPrefab, pos, Quaternion.identity);
+                    PlantInfo newPlantInfo = new PlantInfo(maxHP, pos, regenHP, newObject);
+                    levelPlants.Add(newPlantInfo);
                 }
             }
             catch (FormatException){
                 Debug.Log("There are some issues in plants csv file!");
             }
-            //string[] dataInfo = row.text.Split()
         } 
+    }
 
-        /*Debug.Log(data);
-        Debug.Log(textAssetData);
-        Debug.Log(data.Length);
-        */
-        /*int columnsAmount = 6;
-        int tableSize = data.Length / columnsAmount - 1;
-
-        for(int i = 0; i < tableSize; i++){
-   
+    public GameObject SelectRandomAlivePlant(){
+        int randomPlant = rnd.Next(levelPlants.Count);
+        int fallback = 0;
+        while(!levelPlants[randomPlant].plantScript.isAlive() && fallback < 1000){
+            randomPlant = rnd.Next(levelPlants.Count - 1);
+            fallback += 1;
         }
-        */
+        if (fallback == 1000){
+            Debug.Log("HAD TO USE FALLBACK");
+        }
+        return levelPlants[randomPlant].plantInstance;
     }
 }
 

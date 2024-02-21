@@ -14,6 +14,7 @@ public class PlantInstance : MonoBehaviour
         this.maxHP = newMaxHP;
         this.spawnPosition = newSpawnPosition;
         this.regenStrength = newRegenStrength;
+        this.currentHP = newMaxHP;
     }
 
     void Start()
@@ -40,6 +41,6 @@ public class PlantInstance : MonoBehaviour
     }
 
     public bool isAlive(){
-        return this.currentHP == 0;
+        return this.currentHP != 0;
     }
 }
