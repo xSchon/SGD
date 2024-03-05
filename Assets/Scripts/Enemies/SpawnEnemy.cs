@@ -8,30 +8,28 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField] private GameObject tankOponent;  
     [SerializeField] private PlantsManager plantsManager;
     [SerializeField] private GameObject spawnArea; 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+    
+    private int aliveEnemies = 0;
     void Update()
     {
         // Check if the X key is pressed
         if (Input.GetKeyDown(KeyCode.X))
         {
             // Spawn opponent when X is pressed
-            SpawnOpponent(this.opponentPrefab);
+            SpawnInstance(this.opponentPrefab);
         }
 
         if (Input.GetKeyDown(KeyCode.Y))
         {
             // Spawn opponent when X is pressed
-            SpawnOpponent(this.tankOponent);
+            SpawnInstance(this.tankOponent);
         }
     }   
 
-    void SpawnOpponent(GameObject enemyPrefab)
+    void SpawnInstance(GameObject enemyPrefab)
     {
+        this.aliveEnemies += 1;
+
         Transform spawnerTransform = spawnArea.GetComponent<Transform>();
         Vector3 scale = spawnerTransform.localScale;
         Vector3 position = spawnerTransform.position;
@@ -44,4 +42,13 @@ public class SpawnEnemy : MonoBehaviour
         GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
         newEnemy.GetComponent<GroundMovement>().SetTarget(plantsManager.SelectRandomAlivePlant());
     }
+
+    public void EnemyDied(){
+        this.aliveEnemies -= 0;
+    }
+
+    public int EnemiesAlive(){
+        return this.aliveEnemies;
+    }
+
 }
