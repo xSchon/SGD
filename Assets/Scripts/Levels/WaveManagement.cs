@@ -18,15 +18,15 @@ public class EnemyWave{
 
     public EnemyWave(int orderNo, int minOpAtOnce, int maxOpAtOnce, int minSecDelay, int maxSecDelay, int amtTanks, int amtSmalls, int amtKamikaze, int secondsWaitAfter)
     {
-        orderNo = orderNo;
-        minOpAtOnce = minOpAtOnce;
-        maxOpAtOnce = maxOpAtOnce;
-        minSecDelay = minSecDelay;
-        maxSecDelay = maxSecDelay;
-        amtTanks = amtTanks;
-        amtSmalls = amtSmalls;
-        amtKamikaze = amtKamikaze;
-        secondsWaitAfter = secondsWaitAfter;
+        this.orderNo = orderNo;
+        this.minOpAtOnce = minOpAtOnce;
+        this.maxOpAtOnce = maxOpAtOnce;
+        this.minSecDelay = minSecDelay;
+        this.maxSecDelay = maxSecDelay;
+        this.amtTanks = amtTanks;
+        this.amtSmalls = amtSmalls;
+        this.amtKamikaze = amtKamikaze;
+        this.secondsWaitAfter = secondsWaitAfter;
     }
 
 }
@@ -36,7 +36,16 @@ public class WaveManagement : MonoBehaviour
     [SerializeField] TextAsset wavesCsv;
     [SerializeField] LevelManager levelManager;
     [SerializeField] UIManager uiManager;
+    [SerializeField] SpawnEnemy enemySpawner;
     private List<EnemyWave> levelWaves = new List<EnemyWave>();
+
+    private bool waveActive = false;
+    private float waitStart = 5.0f;
+    private float sinceLastSpawn;
+    private float spawnAfter;
+    private EnemyWave curWav;
+    private List<string> enemiesPool = new List<string>();
+
     void Start()
     {
         currentLevel = levelManager.getLevelNumber();
@@ -44,8 +53,56 @@ public class WaveManagement : MonoBehaviour
     }
     void Update()
     {   
-        Debug.Log(levelWaves.Count);
-        uiManager.addTopNotification("LULE", 5);
+        if(waveActive){
+            WaveSpawner();
+        } else {
+            if(waitStart > 0 ){
+                waitStart -= Time.deltaTime;
+            } else {
+                waveActive = true;
+                InitWave();
+            }
+        }
+    }
+
+    void SpawnWave(){
+        int amtEnemies = UnityEngine.Random.Range(curWav.minOpAtOnce, curWav.maxOpAtOnce+1);
+        this.sinceLastSpawn = 0.0f;
+        Debug.Log("AMT ENEMIES " + amtEnemies);
+        
+        int startCount = enemiesPool.Count;
+        for(int i = 0; i < Math.Min(amtEnemies, startCount); i++){
+            int enemyToSpawn = UnityEngine.Random.Range(0, enemiesPool.Count);
+            enemySpawner.EnemySpawn(enemiesPool[enemyToSpawn]);
+            enemiesPool.RemoveAt(enemyToSpawn);
+        }
+
+        if (enemiesPool.Count == 0){
+            EndWave();
+        }
+    }
+    void WaveSpawner(){
+        this.sinceLastSpawn += Time.deltaTime;
+        if(this.sinceLastSpawn > this.spawnAfter){
+            SpawnWave();
+            this.spawnAfter = UnityEngine.Random.Range((float)curWav.minSecDelay, curWav.maxSecDelay);
+        }
+    }
+
+    void InitWave(){
+        curWav = levelWaves.First();
+        this.spawnAfter = UnityEngine.Random.Range((float)curWav.minSecDelay, curWav.maxSecDelay);
+        
+        uiManager.addTopNotification("WAVE "+curWav.orderNo+" STARTING", 5);
+        for(int i = 0; i < curWav.amtTanks; i++) enemiesPool.Add("Tank");
+        for(int i = 0; i < curWav.amtSmalls; i++) enemiesPool.Add("Small");
+        for(int i = 0; i < curWav.amtKamikaze; i++) enemiesPool.Add("Kamikaze");
+
+        SpawnWave();
+    }
+
+    void EndWave(){
+        Debug.Log("Whole wave "+curWav.orderNo+" was spawned");
     }
 
     void InitLoadWaves(){

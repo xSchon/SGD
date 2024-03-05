@@ -703,7 +703,6 @@ GameObject:
   m_Component:
   - component: {fileID: 433507197}
   - component: {fileID: 433507198}
-  - component: {fileID: 433507199}
   m_Layer: 0
   m_Name: NavMesh
   m_TagString: Untagged
@@ -755,20 +754,8 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: e37f34efffe2caab393d777b10a1da5f, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: cc6aa1b7e6d1738e2898ee82bfc9b1cc, type: 2}
   m_BuildHeightMesh: 0
---- !u!114 &433507199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 433507196}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e051f01388666384a94b5737d409e50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &448698331 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1599826595754709761, guid: 181aa9545315e3f078d57f32969996cb, type: 3}
@@ -904,15 +891,15 @@ RectTransform:
   m_GameObject: {fileID: 528888471}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0366666, y: 1.0366666, z: 1.0366666}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1043998223}
+  m_Father: {fileID: 578347709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 552.5, y: 578.45996}
-  m_SizeDelta: {x: 665.9164, y: 28}
+  m_AnchoredPosition: {x: 0.00012207031, y: 257.99997}
+  m_SizeDelta: {x: -400, y: -572}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &528888473
 MonoBehaviour:
@@ -1068,7 +1055,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 528888472}
   m_Father: {fileID: 1043998223}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1170,6 +1158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wavesCsv: {fileID: 4900000, guid: db7f87f008a19e879871b8946959a654, type: 3}
   levelManager: {fileID: 1294457544}
+  uiManager: {fileID: 1043998224}
+  enemySpawner: {fileID: 691414407}
 --- !u!4 &583176919
 Transform:
   m_ObjectHideFlags: 0
@@ -2555,7 +2545,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 578347709}
-  - {fileID: 528888472}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1043998224
@@ -5271,7 +5260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5850842131936304756, guid: 7eade991ba53a0f738197630a532164b, type: 3}
       propertyPath: m_Constraints
-      value: 112
+      value: 116
       objectReference: {fileID: 0}
     - target: {fileID: 5850842131936304756, guid: 7eade991ba53a0f738197630a532164b, type: 3}
       propertyPath: m_Interpolate

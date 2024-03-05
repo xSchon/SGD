@@ -26,6 +26,19 @@ public class SpawnEnemy : MonoBehaviour
         }
     }   
 
+    public void EnemySpawn(string enemyType){
+        if(enemyType == "Tank"){
+            SpawnInstance(this.tankOponent);
+        }
+        if(enemyType == "Small"){
+            Debug.Log("There will be small enemy spawned");
+        }
+        if(enemyType == "Kamikaze"){
+            Debug.Log("There will be kamikadze enemy spawned");
+        }
+
+    }
+
     void SpawnInstance(GameObject enemyPrefab)
     {
         this.aliveEnemies += 1;
@@ -44,7 +57,7 @@ public class SpawnEnemy : MonoBehaviour
     }
 
     public void EnemyDied(){
-        this.aliveEnemies -= 0;
+        this.aliveEnemies -= 1;
     }
 
     public int EnemiesAlive(){
