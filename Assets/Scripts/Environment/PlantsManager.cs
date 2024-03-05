@@ -21,14 +21,12 @@ public class PlantsManager : MonoBehaviour
     [SerializeField] GameObject PlantPrefab;
     [SerializeField] TextAsset textAssetData;
     public List<PlantInfo> levelPlants = new List<PlantInfo>();
-    public GameObject navMesh;
     
     private int currentLevel = 1;
     private System.Random rnd = new System.Random();
     void Start()
     {
         LoadPlants();
-        //navMesh.GetComponents<NavMeshSurface>();  //.BuildNavMesh();
     }
 
     void Update()

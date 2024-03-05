@@ -6,12 +6,7 @@ public class GroundMovement : MonoBehaviour
 {
     [SerializeField] private UnityEngine.AI.NavMeshAgent agent;
     private Transform target;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         agent.SetDestination(target.transform.position);        

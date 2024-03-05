@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private float levelTimer = 0.0f;
+    private int levelNumber;
     void Start()
     {
-        
+        levelNumber = 1;
+        LoadLevelSettings();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        levelTimer += Time.deltaTime;
+    }
+
+    public float currentLevelTime(){
+        return levelTimer;
+    }
+
+    public int getLevelNumber(){
+        return this.levelNumber;
+    }
+
+    private void LoadLevelSettings(){
+
     }
 }

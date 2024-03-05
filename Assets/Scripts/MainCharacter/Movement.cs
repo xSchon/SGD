@@ -51,8 +51,6 @@ public class CameraController : MonoBehaviour
             run = true;
         }
 
-
-        Debug.Log(_input.normalized.magnitude);
         // navMeshAgent.destination = transform.position + transform.forward * _input.normalized.magnitude * _speed * Time.deltaTime;
     }
 }

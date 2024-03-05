@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class WaveManagement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private int levelNumber;
+    [SerializeField] TextAsset wavesCsv;
+    [SerializeField] LevelManager levelManager;
+    [SerializeField] UIManager uiManager;
     void Start()
     {
-        
+        levelNumber = levelManager.getLevelNumber();
     }
-
-    // Update is called once per frame
     void Update()
-    {
-        
+    {   
+        uiManager.addTopNotification("WAVE 1 INC", 5);
     }
 }
