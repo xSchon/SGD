@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using System.Linq;
 using System;
-using static PlantCSV;
 
 public class PlantInfo{
     public GameObject plantInstance;
     public PlantInstance plantScript;
+
     public PlantInfo(int newMaxHP, Vector3 newPosition, int newRegenStrength, GameObject prefabInstance){
         this.plantInstance = prefabInstance;
         this.plantScript = this.plantInstance.GetComponent<PlantInstance>();        
@@ -20,12 +21,14 @@ public class PlantsManager : MonoBehaviour
     [SerializeField] GameObject PlantPrefab;
     [SerializeField] TextAsset textAssetData;
     public List<PlantInfo> levelPlants = new List<PlantInfo>();
+    public GameObject navMesh;
     
     private int currentLevel = 1;
     private System.Random rnd = new System.Random();
     void Start()
     {
         LoadPlants();
+        //navMesh.GetComponents<NavMeshSurface>();  //.BuildNavMesh();
     }
 
     void Update()

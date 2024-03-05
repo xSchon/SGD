@@ -42,6 +42,6 @@ public class SpawnEnemy : MonoBehaviour
             Random.Range(position.z - scale.z / 2, position.z + scale.z / 2));
 
         GameObject newEnemy = Instantiate(enemyPrefab, randomSpawnPosition, Quaternion.identity);
-        newEnemy.GetComponent<TankOponent>().SetTarget(plantsManager.SelectRandomAlivePlant());
+        newEnemy.GetComponent<GroundMovement>().SetTarget(plantsManager.SelectRandomAlivePlant());
     }
 }

@@ -1,0 +1,4 @@
+level,waveno,enemyName,maxHP,speed,maxDmg,DPS
+0,0,tank,150,5,100,1
+0,0,small,50,10,5,1
+0,0,kamikadze,1,8,5,5

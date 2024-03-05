@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
-{    [SerializeField] private Rigidbody _rb;
+{    
+    [SerializeField] private Rigidbody _rb;
     [SerializeField] private float _speed = 5;
     [SerializeField] private float _turnSpeed = 360;
+    [SerializeField] private AnimationsManager animationsManager;
+    [SerializeField] private UnityEngine.AI.NavMeshAgent navMeshAgent;
     private Vector3 _input;
+    private float secondsWalking = 0;
+    private bool run = false;
 
     private void Update() {
         GatherInput();
@@ -30,11 +35,24 @@ public class CameraController : MonoBehaviour
 
     private void Move() {
         _rb.MovePosition(transform.position + transform.forward * _input.normalized.magnitude * _speed * Time.deltaTime);
-    }
-}
+        if(_input.normalized.magnitude != 0 && secondsWalking == 0){
+            animationsManager.startWalk();
+        } 
+        if(_input.normalized.magnitude != 0){
+            secondsWalking += Time.deltaTime;
+        }
+        if(_input.normalized.magnitude == 0 && secondsWalking != 0){
+            secondsWalking = 0;
+            animationsManager.stopActivity();
+            run = false;
+        }
+        if(_input.normalized.magnitude != 0 && secondsWalking >= 3 && !run){
+            animationsManager.startRun();
+            run = true;
+        }
 
-public static class Helpers 
-{
-    private static Matrix4x4 _isoMatrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
-    public static Vector3 ToIso(this Vector3 input) => _isoMatrix.MultiplyPoint3x4(input);
+
+        Debug.Log(_input.normalized.magnitude);
+        // navMeshAgent.destination = transform.position + transform.forward * _input.normalized.magnitude * _speed * Time.deltaTime;
+    }
 }
