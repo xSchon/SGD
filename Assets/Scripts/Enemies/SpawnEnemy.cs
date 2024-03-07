@@ -31,7 +31,7 @@ public class SpawnEnemy : MonoBehaviour
             SpawnInstance(this.tankOponent);
         }
         if(enemyType == "Small"){
-            Debug.Log("There will be small enemy spawned");
+            SpawnInstance(this.opponentPrefab);
         }
         if(enemyType == "Kamikaze"){
             Debug.Log("There will be kamikadze enemy spawned");

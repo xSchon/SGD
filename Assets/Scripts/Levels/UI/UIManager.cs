@@ -67,21 +67,4 @@ public class UIManager : MonoBehaviour
             topQueuedNotifs.RemoveAt(0);
         }
     }
-
-/*
-    private void FadeColor()
-    {
-        // pop up message is slowly disappearing from vision with its text too
-        var tmp = gameObject.GetComponent<Image>().color;
-        tmp.a -= FadeRatio * Time.deltaTime;
-        gameObject.GetComponent<Image>().color = tmp;
-
-        tmp = messageText.color;
-        tmp.a -= FadeRatio * Time.deltaTime;
-        messageText.color = tmp;
-
-        tmp = messageEvaluation.color;
-        tmp.a -= FadeRatio * Time.deltaTime;
-        messageEvaluation.color = tmp;
-    } */
 }

@@ -9,7 +9,8 @@ public class GroundMovement : MonoBehaviour
 
     void Update()
     {
-        agent.SetDestination(target.transform.position);        
+        agent.SetDestination(target.transform.position);   
+        Debug.Log(target.transform.position);     
     }
     
     public void SetTarget(GameObject newTarget){

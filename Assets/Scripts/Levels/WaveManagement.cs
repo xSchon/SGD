@@ -107,7 +107,7 @@ public class WaveManagement : MonoBehaviour
 
     void InitLoadWaves(){
         string[] dataRows = wavesCsv.text.Split(new string[] {"\n"}, StringSplitOptions.None);
-        
+       
         foreach(string row in dataRows.Skip(1).Take(dataRows.Length-2).ToArray()){
             string [] dataInfo = row.Split(new string[] {","}, StringSplitOptions.None);
             try{

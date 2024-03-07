@@ -14,12 +14,17 @@ public class CameraController : MonoBehaviour
     private bool run = false;
 
     private void Update() {
-        GatherInput();
-        Look();
+        if(!gameObject.GetComponent<Combat>().Attacking()){
+            GatherInput();
+            Look();
+        } else {
+            StopWalking();
+        }
     }
 
     private void FixedUpdate() {
-        Move();
+        if(!gameObject.GetComponent<Combat>().Attacking())
+            Move();
     }
 
     private void GatherInput() {
@@ -50,7 +55,9 @@ public class CameraController : MonoBehaviour
             animationsManager.startRun();
             run = true;
         }
+    }
 
-        // navMeshAgent.destination = transform.position + transform.forward * _input.normalized.magnitude * _speed * Time.deltaTime;
+    private void StopWalking(){
+        _input = Vector3.zero;
     }
 }

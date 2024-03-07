@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     private float levelTimer = 0.0f;
-    private int levelNumber;
+    private int levelNumber = 1;
     void Start()
     {
         levelNumber = 1;

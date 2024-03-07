@@ -38,4 +38,8 @@ public class AnimationsManager : MonoBehaviour
         Reset(run);
     }
 
+    public void EnemyHit(){
+        Reset(hitEnemy);
+    }
+
 }
